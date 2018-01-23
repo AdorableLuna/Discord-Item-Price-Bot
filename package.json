@@ -1,0 +1,16 @@
+{
+  "name": "itemprice",
+  "version": "1.0.0",
+  "description": "Retrieves the item's auction house prices.",
+  "main": "itemprice.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Bláckfur",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^11.3.0",
+    "lodash": "^4.17.4",
+    "snekfetch": "^3.6.1"
+  }
+}
