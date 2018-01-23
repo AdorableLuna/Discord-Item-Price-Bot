@@ -2,14 +2,13 @@ const wowhead_api = "http://www.wowhead.com/search?q=";
 const wowhead_api_rest = "&opensearch";
 const tsm_api = "http://api.tradeskillmaster.com/v1/item/EU/argent-dawn/";
 const tsm_api_rest = "?format=json&apiKey=";
-const botSettings = require('../botsettings.json');
 
 const snekfetch = require("snekfetch");
 const Discord = require("discord.js");
 const _ = require("lodash");
 
 module.exports.run = async (bot, message, args) => {
-    if(message.channel.name != botSettings.channel) return message.channel.send(`Deze command kan alleen in ${message.guild.channels.find("name", botSettings.channel)} worden uitgevoerd.`);
+    if(message.channel.name != process.env.CHANNEL) return message.channel.send(`Deze command kan alleen in ${message.guild.channels.find("name", process.env.CHANNEL)} worden uitgevoerd.`);
 
     let arg = _.startCase(args.join(" "));
 
@@ -28,7 +27,7 @@ module.exports.run = async (bot, message, args) => {
             }
         })
 
-        snekfetch.get(tsm_api + id + tsm_api_rest + botSettings.tsm_api_key).then(r => {
+        snekfetch.get(tsm_api + id + tsm_api_rest + process.env.TSM_API_KEY).then(r => {
             let minbuyout = r.body.MinBuyout;
             var gold = parseInt(minbuyout/10000).toLocaleString();
             gold = gold.toLocaleString(undefined, { minimumFractionDigits: 2 });
